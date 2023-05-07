@@ -22,9 +22,11 @@ public class AccountService {
     public Account saveAccountsForUser(User user, String accountType){
 
         Account account = new Account();
-        account.setAccountName(accountType);
-        account.getUsers().add(user);
+        account.setAccountName(accountType);//Define Account Type
+        account.getUsers().add(user);//Define User
         user.getAccounts().add(account);
+
+
         return accountRepo.save(account);
 
     }

@@ -22,6 +22,8 @@ public class User {
 	public Long getUserId() {
 		return userId;
 	}
+
+
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
@@ -50,6 +52,9 @@ public class User {
 	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
 	}
+
+
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_account",
 	           joinColumns = @JoinColumn(name = "user_id"), 
@@ -57,6 +62,9 @@ public class User {
 	public List<Account> getAccounts() {
 		return accounts;
 	}
+
+
+
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}

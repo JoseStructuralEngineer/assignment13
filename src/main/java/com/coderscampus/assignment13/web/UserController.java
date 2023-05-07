@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.coderscampus.assignment13.domain.User;
 import com.coderscampus.assignment13.service.UserService;
 
+//Handles End Points
+
 @Controller
 public class UserController {
 	
@@ -52,7 +54,25 @@ public class UserController {
 		model.put("user", user);
 		return "users";
 	}
-	
+
+	@PostMapping("/users")
+	public String postOneUserB (User user) {
+		//The user came with an address but no accounts
+		//Thus we need to update object
+		//Note Address does not have userId or user reference
+
+		Address address = user.getAddress();
+		address.setUserId(user.getUserId());
+		address.setUser(user);
+
+		user.setAddress(address);
+		User user0 = userService.findById(user.getUserId());
+		user.setPassword(user0.getPassword());
+		user.setAccounts(user0.getAccounts());
+		userService.saveUser(user);
+		addressService.saveAddress(user.getAddress());
+		return "redirect:/users/"+user.getUserId();
+	}
 	@PostMapping("/users/{userId}")
 	public String postOneUser (User user) {
 		//The user came with an address but no accounts

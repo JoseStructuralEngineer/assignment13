@@ -8,6 +8,7 @@
 		
 		<div th:if="${#lists.size(users) == 1}">
 			<form action="" method="post">
+				<input type="hidden" th:field="${user.userId}"/>
 				<div>
 					Username: <input type="text" th:field="${user.username}" />
 				</div>
